@@ -17,6 +17,12 @@ export interface DashboardStats {
   totalCelebrities: number;
   totalOrders: number;
   monthlyRevenue: number;
+  totalProducts: number;
+  totalMerchOrders: number;
+  monthlyMerchRevenue: number;
+  totalDigitalProducts: number;
+  totalDigitalOrders: number;
+  monthlyDigitalRevenue: number;
   pendingApplications: number;
   recentOrders: OrderListItem[];
   recentApplications: ApplicationListItem[];
@@ -137,4 +143,164 @@ export interface Category {
   icon: string;
   celebrityCount: number;
   createdAt: string;
+}
+
+/* ─── Product Categories ─── */
+export interface ProductCategory {
+  id: string;
+  name: string;
+  slug: string;
+  icon: string;
+  productCount: number;
+  createdAt: string;
+}
+
+/* ─── Products ─── */
+export interface ProductImage {
+  id: string;
+  imagePath: string;
+  imageUrl: string;
+  sortOrder: number;
+}
+
+export interface ProductVariant {
+  id: string;
+  name: string;
+  sku: string | null;
+  priceOverride: number | null;
+  stock: number;
+  sortOrder: number;
+}
+
+export interface ProductListItem {
+  id: string;
+  name: string;
+  slug: string;
+  price: number;
+  isActive: boolean;
+  featured: boolean;
+  celebrityId: string;
+  celebrityName: string;
+  celebritySlug: string;
+  categoryName: string | null;
+  imageUrl: string | null;
+  variantCount: number;
+  totalOrders: number;
+  totalRevenue: number;
+  createdAt: string;
+}
+
+export interface ProductDetail extends ProductListItem {
+  description: string;
+  productCategoryId: string | null;
+  variants: ProductVariant[];
+  images: ProductImage[];
+  recentOrders: MerchOrderListItem[];
+  updatedAt: string;
+}
+
+/* ─── Merch Orders ─── */
+export type MerchOrderStatus =
+  | "pending"
+  | "confirmed"
+  | "shipped"
+  | "delivered"
+  | "cancelled";
+
+export interface MerchOrderListItem {
+  id: string;
+  buyerName: string;
+  buyerEmail: string;
+  celebrityName: string;
+  productName: string;
+  variantName: string | null;
+  quantity: number;
+  totalPrice: number;
+  status: MerchOrderStatus;
+  createdAt: string;
+}
+
+export interface MerchOrderDetail extends MerchOrderListItem {
+  buyerId: string;
+  buyerPhone: string;
+  celebrityId: string;
+  productId: string;
+  productVariantId: string | null;
+  unitPrice: number;
+  shippingName: string;
+  shippingAddress: string;
+  shippingCity: string;
+  shippingPostal: string;
+  shippingNote: string;
+  trackingNumber: string | null;
+  confirmedAt: string | null;
+  shippedAt: string | null;
+  deliveredAt: string | null;
+  updatedAt: string;
+}
+
+/* ─── Digital Product Categories ─── */
+export interface DigitalProductCategory {
+  id: string;
+  name: string;
+  slug: string;
+  icon: string;
+  productCount: number;
+  createdAt: string;
+}
+
+/* ─── Digital Products ─── */
+export interface DigitalProductListItem {
+  id: string;
+  name: string;
+  slug: string;
+  price: number;
+  isActive: boolean;
+  featured: boolean;
+  celebrityName: string;
+  celebritySlug: string;
+  categoryName: string;
+  previewImageUrl: string | null;
+  fileType: string;
+  fileSize: number;
+  downloadCount: number;
+  totalOrders: number;
+  totalRevenue: number;
+  createdAt: string;
+}
+
+export interface DigitalProductDetail extends DigitalProductListItem {
+  description: string;
+  digitalProductCategoryId: string | null;
+  fileName: string;
+  recentOrders: DigitalOrderListItem[];
+  updatedAt: string;
+}
+
+/* ─── Digital Orders ─── */
+export type DigitalOrderStatus = "pending" | "confirmed" | "completed" | "cancelled";
+
+export interface DigitalOrderListItem {
+  id: string;
+  buyerName: string;
+  buyerEmail: string;
+  celebrityName: string;
+  productName: string;
+  fileType: string;
+  price: number;
+  status: DigitalOrderStatus;
+  createdAt: string;
+}
+
+export interface DigitalOrderDetail extends DigitalOrderListItem {
+  buyerId: string;
+  buyerPhone: string;
+  celebrityId: string;
+  digitalProductId: string;
+  downloadToken: string | null;
+  downloadTokenExpiresAt: string | null;
+  downloadCount: number;
+  confirmedAt: string | null;
+  completedAt: string | null;
+  updatedAt: string;
 }

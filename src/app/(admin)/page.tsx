@@ -42,14 +42,52 @@ export default function DashboardPage() {
           icon="⭐"
         />
         <StatCard
-          title="Narudžbine ovog meseca"
+          title="Video narudžbine"
           value={stats.totalOrders}
           icon="📦"
         />
         <StatCard
-          title="Mesečni prihod"
+          title="Mesečni prihod (video)"
           value={formatPrice(stats.monthlyRevenue)}
           icon="💰"
+        />
+      </div>
+
+      {/* Merch Stat Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <StatCard
+          title="Aktivni proizvodi"
+          value={stats.totalProducts}
+          icon="🛍️"
+        />
+        <StatCard
+          title="Merch narudžbine"
+          value={stats.totalMerchOrders}
+          icon="📬"
+        />
+        <StatCard
+          title="Mesečni prihod (merch)"
+          value={formatPrice(stats.monthlyMerchRevenue)}
+          icon="👕"
+        />
+      </div>
+
+      {/* Digital Stat Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <StatCard
+          title="Digitalni proizvodi"
+          value={stats.totalDigitalProducts ?? 0}
+          icon="💾"
+        />
+        <StatCard
+          title="Digitalne narudžbine"
+          value={stats.totalDigitalOrders ?? 0}
+          icon="📥"
+        />
+        <StatCard
+          title="Mesečni prihod (digital)"
+          value={formatPrice(stats.monthlyDigitalRevenue ?? 0)}
+          icon="💎"
         />
       </div>
 

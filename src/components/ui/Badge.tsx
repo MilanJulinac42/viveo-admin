@@ -38,11 +38,17 @@ export function getStatusVariant(status: string): BadgeVariant {
   switch (status) {
     case "completed":
     case "approved":
+    case "delivered":
       return "success";
     case "pending":
       return "warning";
     case "rejected":
+    case "cancelled":
       return "danger";
+    case "confirmed":
+      return "info";
+    case "shipped":
+      return "purple";
     default:
       return "default";
   }

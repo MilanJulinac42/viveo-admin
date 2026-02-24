@@ -162,11 +162,17 @@ export default function CelebrityDetailPage() {
           ) : (
             <div className="space-y-4">
               <div className="flex items-start gap-4">
-                <img
-                  src={celeb.image}
-                  alt=""
-                  className="w-16 h-16 rounded-full object-cover"
-                />
+                {celeb.image ? (
+                  <img
+                    src={celeb.image}
+                    alt=""
+                    className="w-16 h-16 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-bold text-xl">
+                    {celeb.name.charAt(0)}
+                  </div>
+                )}
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">
                     {celeb.name}

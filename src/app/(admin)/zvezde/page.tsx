@@ -55,11 +55,17 @@ export default function CelebritiesPage() {
       header: "Zvezda",
       render: (c) => (
         <div className="flex items-center gap-3">
-          <img
-            src={c.image}
-            alt=""
-            className="w-10 h-10 rounded-full object-cover"
-          />
+          {c.image ? (
+            <img
+              src={c.image}
+              alt=""
+              className="w-10 h-10 rounded-full object-cover"
+            />
+          ) : (
+            <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-semibold text-sm">
+              {c.name.charAt(0)}
+            </div>
+          )}
           <div>
             <p className="font-medium text-gray-900">
               {c.name}
